@@ -73,9 +73,12 @@ public class Tool extends Equippable implements Item {
     public Item clone()
     {
         Tool cpy = new Tool();
-
-        cpy.setName(this.name);
-
+        cpy.setName(this.getName());
+        cpy.setDurability(this.getDurability());
+        cpy.setSpeed(this.getSpeed());
+        cpy.setMaterial(this.getMaterial());
+        cpy.setModifier(this.getModifier());
+        cpy.setModifierLevel(this.getModifierLevel());
         return cpy;
     }
 
@@ -94,7 +97,9 @@ public class Tool extends Equippable implements Item {
 
         Tool rhsItem = (Tool) rhs;
 
-        return false;
+        return this.getName().equals(rhsItem.getName()) && this.getSpeed() == rhsItem.getSpeed()
+            && this.getMaterial().equals(rhsItem.getMaterial()) && this.getModifier().equals(rhsItem.getModifier())
+            && this.getModifierLevel() == rhsItem.getModifierLevel();
     }
 
     /**
@@ -119,6 +124,14 @@ public class Tool extends Equippable implements Item {
     @Override
     public String toString()
     {
-        return "String.format(FMT_STR, ...)";
+        return String.format(
+            FMT_STR,
+            this.getName(),
+            this.getDurability(),
+            this.getSpeed(),
+            this.getMaterial(),
+            this.getModifier(),
+            this.getModifierLevel()
+         );
     }
 }
